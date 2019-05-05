@@ -17,31 +17,24 @@ export class DualListPickerComponent {
   @Input()
   public destinationListTitle:string;
 
-  public onSaveClick() { this.saveClick.emit(); }
+  public onSaveClick() { 
+    this.saveClick.emit({ 
+      sourceList: this.sourceList, 
+      destinationList: this.destinationList
+    });
+  }
 
   @Output()
   public saveClick: EventEmitter<any> = new EventEmitter();
 
   @Input()
-  public columnDefs:any = [
-    {
-      columnName: "Name",
-      propertyName: "name"
-    }
-  ];
+  public columnDefs:any;
 
   @Input()
-  public sourceList:any[] = [
-    { name: "Wheel" },
-    { name: "Door" },
-    { name: "Trunk" },
-    { name: "Engine" }
-  ];
+  public sourceList:any[];
 
   @Input()
-  public destinationList:any[] = [
-    { name: "Hood" }
-  ];
+  public destinationList:any[];
 
   public prop:string = "name";
 
@@ -56,6 +49,6 @@ export class DualListPickerComponent {
         $event.currentIndex
       );
     }
-    
+    console.log(this.sourceList);
   }  
 }
