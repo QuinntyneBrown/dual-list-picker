@@ -27,10 +27,6 @@ export class DualListPickerComponent {
     {
       columnName: "Name",
       propertyName: "name"
-    },
-    {
-      columnName: "Description",
-      propertyName: "name"
     }
   ];
 

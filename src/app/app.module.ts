@@ -4,11 +4,15 @@ import { AppComponent } from './app.component';
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DualListPickerComponent } from './dual-list-picker.component';
+import { DualListPickerRowComponent } from './dual-list-picker-row.component';
+import { DualListPickerHeaderComponent } from './dual-list-picker-header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DualListPickerComponent
+    DualListPickerComponent,
+    DualListPickerRowComponent,
+    DualListPickerHeaderComponent    
   ],
   imports: [
     BrowserModule,

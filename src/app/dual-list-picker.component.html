@@ -10,38 +10,19 @@
 <h3>{{ destinationListTitle }}</h3>
 
 <ng-container cdkDropListGroup>
-    <table id="source-list-container" class="list-container" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="sourceList">
 
-        <!-- <colgroup>
-            <col>
-            <col>            
-        </colgroup>         -->
+    <div id="source-list-container" class="list-container" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="sourceList">  
+        <app-dual-list-picker-header [columnDefs]="columnDefs"></app-dual-list-picker-header>               
+        <app-dual-list-picker-row cdkDrag *ngFor="let i of sourceList" [data]="i" [columnDefs]="columnDefs">            
+        </app-dual-list-picker-row>
+    </div>
 
-        <thead>
-            <tr>
-                <th *ngFor="let c of columnDefs">
-                    {{ c.columnName }}
-                </th>
-            </tr>  
-        </thead>
-     
-        <tbody>
-            <tr class="item" cdkDrag *ngFor="let i of sourceList">
-                <td *ngFor="let c of columnDefs">{{ i[c.propertyName] }}</td>
-            </tr>
-        </tbody>
-    </table>
-    
-    <table id="destination-list-container" class="list-container" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="destinationList">        
-        <tr>
-            <th *ngFor="let c of columnDefs">
-                {{ c.columnName }}
-            </th>
-        </tr>            
-        <tr class="item" cdkDrag *ngFor="let i of destinationList">
-            <td *ngFor="let c of columnDefs">{{ i[c.propertyName] }}</td>            
-        </tr>
-    </table>
+
+    <div id="destination-list-container" class="list-container" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="destinationList">        
+        <app-dual-list-picker-header [columnDefs]="columnDefs"></app-dual-list-picker-header>         
+        <app-dual-list-picker-row cdkDrag *ngFor="let i of destinationList" [data]="i" [columnDefs]="columnDefs">            
+        </app-dual-list-picker-row>
+    </div>
 </ng-container>
 
 
