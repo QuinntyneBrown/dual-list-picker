@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter, ElementRef } from "@angular/core";
 import { moveItemInArray, CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -7,6 +7,10 @@ import { moveItemInArray, CdkDragDrop, transferArrayItem } from '@angular/cdk/dr
   selector: "app-dual-list-picker"
 })
 export class DualListPickerComponent { 
+
+  constructor(
+    private readonly _elementRef: ElementRef
+  ) { }
 
   @Input()
   public title:string;
@@ -24,6 +28,14 @@ export class DualListPickerComponent {
     });
   }
 
+  @Input()
+  public set itemSizeValue(value:number) {
+    (<HTMLElement>this._elementRef.nativeElement).style.setProperty("--item-size",`${value}px`);
+    this._itemSizeValue  = value;
+  }
+
+  private _itemSizeValue: number = 30;
+
   @Output()
   public saveClick: EventEmitter<any> = new EventEmitter();
 
@@ -36,12 +48,10 @@ export class DualListPickerComponent {
   @Input()
   public destinationList:any[];
 
-  public prop:string = "name";
-
   public drop($event: CdkDragDrop<string[]>) {
     if($event.previousContainer === $event.container) {
       moveItemInArray(this.sourceList,$event.previousIndex,$event.currentIndex);
-    }else {
+    } else {
       transferArrayItem(
         $event.previousContainer.data,
         $event.container.data,
@@ -49,6 +59,5 @@ export class DualListPickerComponent {
         $event.currentIndex
       );
     }
-    console.log(this.sourceList);
   }  
 }

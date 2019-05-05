@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Renderer2, ElementRef } from "@angular/core";
 
 @Component({
   templateUrl: "./dual-list-picker-row.component.html",
@@ -7,9 +7,18 @@ import { Component, Input } from "@angular/core";
 })
 export class DualListPickerRowComponent { 
 
+  constructor(
+    private readonly _renderer: Renderer2,
+    private readonly _elementRef: ElementRef
+  ) {    
+  }
   @Input()
   public data:any;
 
   @Input()
   public columnDefs:any[];
+
+  ngOnInit() {
+    this._renderer.setStyle(this._elementRef.nativeElement,"grid-template-columns",this.columnDefs.map(x => x.width).join(" "));
+  }  
 }

@@ -11,20 +11,26 @@ export class AppComponent {
   public columnDefs:any[] = [
     {
       columnName: "Name",
-      propertyName: "name"
-    }
+      propertyName: "name",
+      width: "50px"
+    },
+    {
+      columnName: "Description",
+      propertyName: "description",
+      width: "75px"
+    }  
   ];
 
   @Input()
   public sourceList:any[] = [
-    { name: "Wheel" },
-    { name: "Door" },
-    { name: "Trunk" },
-    { name: "Engine" }
+    { name: "Wheel", description:"tough" },
+    { name: "Door", description:"tough" },
+    { name: "Trunk", description:"tough" },
+    { name: "Engine", description:"tough" }
   ];
 
   @Input()
   public destinationList:any[] = [
-    { name: "Hood" }
+    { name: "Hood", description:"tough" }
   ];  
 }
