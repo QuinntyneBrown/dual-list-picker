@@ -1,0 +1,47 @@
+<h2>{{ title }}</h2>
+
+<div class="commands">
+    <button (click)="onSaveClick($event)">
+        Save
+    </button>
+</div>
+
+<h3>{{ sourceListTitle }}</h3>
+<h3>{{ destinationListTitle }}</h3>
+
+<ng-container cdkDropListGroup>
+    <table id="source-list-container" class="list-container" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="sourceList">
+
+        <!-- <colgroup>
+            <col>
+            <col>            
+        </colgroup>         -->
+
+        <thead>
+            <tr>
+                <th *ngFor="let c of columnDefs">
+                    {{ c.columnName }}
+                </th>
+            </tr>  
+        </thead>
+     
+        <tbody>
+            <tr class="item" cdkDrag *ngFor="let i of sourceList">
+                <td *ngFor="let c of columnDefs">{{ i[c.propertyName] }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <table id="destination-list-container" class="list-container" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="destinationList">        
+        <tr>
+            <th *ngFor="let c of columnDefs">
+                {{ c.columnName }}
+            </th>
+        </tr>            
+        <tr class="item" cdkDrag *ngFor="let i of destinationList">
+            <td *ngFor="let c of columnDefs">{{ i[c.propertyName] }}</td>            
+        </tr>
+    </table>
+</ng-container>
+
+

@@ -1,13 +1,6 @@
-<ng-container cdkDropListGroup>
-    <div id="source-list-container" class="list-container" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="sourceList">
-            <div class="item" cdkDrag *ngFor="let i of sourceList">
-                {{ i }}
-            </div>
-        </div>
-        
-        <div id="destination-list-container" class="list-container" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="destinationList">
-            <div class="item" cdkDrag *ngFor="let i of destinationList">
-                {{ i }}
-            </div>
-        </div>
-</ng-container>
+<app-dual-list-picker 
+[sourceListTitle]="'Source List Title'"
+[destinationListTitle]="'Destination List Title'"
+[title]="'Dual List Picker'"
+>
+</app-dual-list-picker>
