@@ -42,12 +42,44 @@ export class DualListPickerComponent {
   @Input()
   public columnDefs:any;
 
-  @Input()
-  public sourceList:any[];
+  public _originalSourceList:any[];
+
+  public _originalDestinationList:any[] = [];
+
+  private _sourceList:any[];
+
+  @Input("sourceList")
+  public set sourceList(value:any[]) { 
+    this._sourceList =value; 
+    this._originalSourceList = value.slice(0);
+  }
+
+  public get sourceList() { return this._sourceList; }
+
+  private _destinationList:any[] = [];
+
+  @Input("destinationList")
+  public set destinationList(value:any[]) { 
+    this._destinationList = value; 
+    this._originalDestinationList = value.slice(0);
+  }
+
+  public get isDirty():boolean {
+    
+    if(!this._originalDestinationList || !this._originalSourceList) { return false; }
+
+    if(!equals(this._originalDestinationList,this._destinationList)) {return true };
+
+    if(!equals(this._originalSourceList,this._sourceList)) {return true };
+
+    return false;
+  }
+
+  public get destinationList() { return this._destinationList; }
 
   @Input()
-  public destinationList:any[];
-
+  public disabled:boolean;
+  
   public drop($event: CdkDragDrop<string[]>) {
     if($event.previousContainer === $event.container) {
       moveItemInArray(this.sourceList,$event.previousIndex,$event.currentIndex);
@@ -60,4 +92,28 @@ export class DualListPickerComponent {
       );
     }
   }  
+}
+
+export function equals (array1, array2) {
+  // if the other array is a falsy value, return
+  if (!array2)
+      return false;
+
+  // compare lengths - can save a lot of time 
+  if (array1.length != array2.length)
+      return false;
+
+  for (var i = 0, l=array1.length; i < l; i++) {
+      // Check if we have nested arrays
+      if (array1[i] instanceof Array && array2[i] instanceof Array) {
+          // recurse into the nested arrays
+          if (!array1[i].equals(array2[i]))
+              return false;       
+      }           
+      else if (array1[i] != array2[i]) { 
+          // Warning - two different object instances will never be equal: {x:20} != {x:20}
+          return false;   
+      }           
+  }       
+  return true;
 }

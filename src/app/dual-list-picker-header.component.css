@@ -1,3 +1,19 @@
 :host {
     display: grid;
+    margin: 0px;
+    padding: 0px;
+    justify-content: center;
+    align-content: center;
+    align-items: center; 
+    font-weight: 600;
+    color:rgba(0,0,0,0.4);    
+    border-bottom: 1px solid rgb(234,234,234);
+    font-size: 11px;
+}
+
+h3 {
+    margin:0;
+    padding:0;
+    font-size: 11px;
+    line-height: 1em;
 }

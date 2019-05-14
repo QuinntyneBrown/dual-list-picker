@@ -1,9 +1,11 @@
-<app-dual-list-picker 
-[sourceListTitle]="'Source List Title'"
-[destinationListTitle]="'Destination List Title'"
-[title]="'Dual List Picker'"
+<app-dual-list-picker #dualTablePicker
+[sourceListTitle]="'Uassigned'"
+[destinationListTitle]="'Assigned'"
+[title]="'Select'"
 [columnDefs]="columnDefs"
 [sourceList]="sourceList"
 [destinationList]="destinationList"
+(saveClick)="tryToSave($event)"
+[disabled]="disabled"
 >
 </app-dual-list-picker>

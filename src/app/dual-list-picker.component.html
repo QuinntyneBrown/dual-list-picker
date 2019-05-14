@@ -1,7 +1,7 @@
 <h2>{{ title }}</h2>
 
 <div class="commands">
-    <button (click)="onSaveClick($event)">
+    <button (click)="onSaveClick($event)" [disabled]="!isDirty">
         Save
     </button>
 </div>
@@ -23,6 +23,7 @@
         <app-dual-list-picker-row cdkDrag *ngFor="let i of destinationList" [data]="i" [columnDefs]="columnDefs">            
         </app-dual-list-picker-row>
     </div>
+    
 </ng-container>
 
 

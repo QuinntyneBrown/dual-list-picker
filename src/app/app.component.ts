@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Component, Input, ViewChild } from '@angular/core';
+import { DualListPickerComponent } from './dual-list-picker.component';
 
 @Component({
   selector: 'app-root',
@@ -8,29 +8,43 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 })
 export class AppComponent { 
 
+  @ViewChild("dualTablePicker")
+  public dualTablePicker:DualListPickerComponent;
+
   public columnDefs:any[] = [
+    {
+      columnName: "Id",
+      propertyName: "id",
+      width: "20px"
+    },    
     {
       columnName: "Name",
       propertyName: "name",
-      width: "50px"
+      width: "1fr"
     },
     {
       columnName: "Description",
       propertyName: "description",
-      width: "75px"
+      width: "1fr"
     }  
   ];
 
   @Input()
   public sourceList:any[] = [
-    { name: "Wheel", description:"tough" },
-    { name: "Door", description:"tough" },
-    { name: "Trunk", description:"tough" },
-    { name: "Engine", description:"tough" }
+    { id: 1, name: "Wheel", description:"something" },
+    { id: 2, name: "Door", description:"something" },
+    { id: 3, name: "Trunk", description:"something" },
+    { id: 4, name: "Engine", description:"something" }
   ];
 
   @Input()
   public destinationList:any[] = [
-    { name: "Hood", description:"tough" }
+    { id: 5, name: "Hood", description:"something" }
   ];  
+
+  public tryToSave($event) {
+    alert("Save");
+  }
+
+  public disabled:boolean = false;
 }
